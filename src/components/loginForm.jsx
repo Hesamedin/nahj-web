@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
-import { firebase } from '../firebase/firebase'
 import Logo from '../assets/logo-bis.png'
+import { loginByEmailAction, startLoginByEmail } from '../actions/auth'
+import { push } from 'react-router-redux'
 import { SCREEN_ROOT } from '../App'
 
 class LoginForm extends Component {
@@ -11,8 +11,7 @@ class LoginForm extends Component {
 		super(props);
 		this.state = {
 			email: '',
-			password: '',
-			loginError: ''
+			password: ''
 		}
 	}
 
@@ -20,21 +19,18 @@ class LoginForm extends Component {
 		e.preventDefault();
 
 		const { email, password } = this.state;
-		firebase.auth().signInWithEmailAndPassword(email, password)
-			.then(() => {
-				console.log("Successful Login!")
-				this.props.navToHomeScreen()
-			})
-			.catch((error) => {
-				console.log("oops, Couldn't login. Message: " + error.message)
-			})
-	};
+		const nextAction = () => {
+			this.props.loginByEmailAction()
+			this.props.navToHomeScreen()
+		}
+		startLoginByEmail(email, password, nextAction)
+	}
 
 	handleUserInput = (e) => {
 		const name = e.target.name;
 		const value = e.target.value;
 		this.setState({ [name]: value });
-	};
+	}
 
 	render() {
 		return (
@@ -96,6 +92,7 @@ class LoginForm extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators(
 	{
+		loginByEmailAction: () => loginByEmailAction(),
 		navToHomeScreen: () => push(SCREEN_ROOT)
 	},
 	dispatch
