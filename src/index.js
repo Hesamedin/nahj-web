@@ -9,6 +9,8 @@ import configStore, { history } from './store/configStore'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import './../node_modules/bulma/css/bulma.css'
+import { firebase } from './firebase'
+import { loginAction, logoutAction } from './actions/auth'
 
 const target = document.getElementById('root')
 
@@ -25,3 +27,13 @@ const jsx = (
 
 ReactDOM.render(jsx, target)
 registerServiceWorker()
+
+firebase.auth().onAuthStateChanged((user) => {
+	console.log('Auth state changed to: ', !!user)
+	if (user) {
+		console.log('Google uid: ', user.uid)
+		store.dispatch(loginAction(user.uid))
+	} else {
+		store.dispatch(logoutAction())
+	}
+});

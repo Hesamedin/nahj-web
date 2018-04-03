@@ -1,16 +1,23 @@
 import { firebase, googleAuthProvider } from './../firebase'
 
-export const ACTION_LOGIN_BY_EMAIL = "ActionLogInByEmail"
-export const ACTION_LOGIN_BY_GOOGLE = "ActionLogInByGoogle"
+export const ACTION_LOGIN = "ActionLogin"
+export const ACTION_LOGIN_BY_EMAIL = "ActionLoginByEmail"
+export const ACTION_LOGIN_BY_GOOGLE = "ActionLoginByGoogle"
 export const ACTION_LOGOUT = "ActionLogOut"
 
 export const loginByEmailAction = () => ({
 	type: ACTION_LOGIN_BY_EMAIL
 })
 
-export const loggedInByGoogle = () => ({
-    type: ACTION_LOGIN_BY_GOOGLE
+export const loggedInByGoogle = (uid) => ({
+    type: ACTION_LOGIN_BY_GOOGLE,
+	uid
 })
+
+export const loginAction = (uid) => ({
+	type: ACTION_LOGIN,
+	uid
+});
 
 export const logoutAction = () => ({
 	type: ACTION_LOGOUT

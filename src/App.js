@@ -1,13 +1,11 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import HeaderComponent from './components/HeaderComponent'
-import HomeComponent from "./components/homeComponent"
+import HomeComponent from './components/homeComponent'
 import LoginComponent from './components/loginComponent'
-// import { firebase } from './firebase'
-// import { logoutAction } from './actions/auth'
 
-export const SCREEN_ROOT = "/"
-export const SCREEN_LOGIN = "/login"
+export const SCREEN_ROOT = '/'
+export const SCREEN_LOGIN = '/login'
 
 const AppRouter = () => (
 	<div>
@@ -19,14 +17,5 @@ const AppRouter = () => (
 		</Switch>
 	</div>
 )
-
-// firebase.auth().onAuthStateChanged((user) => {
-// 	console.log('Auth stage changed. It is: ', !!user)
-// 	if (user) {
-//
-// 	} else {
-// 		logoutAction()
-// 	}
-// });
 
 export default AppRouter
