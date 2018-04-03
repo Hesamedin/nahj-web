@@ -1,10 +1,15 @@
 import { firebase, googleAuthProvider } from './../firebase'
 
 export const ACTION_LOGIN_BY_EMAIL = "ActionLogInByEmail"
+export const ACTION_LOGIN_BY_GOOGLE = "ActionLogInByGoogle"
 export const ACTION_LOGOUT = "ActionLogOut"
 
 export const loginByEmailAction = () => ({
 	type: ACTION_LOGIN_BY_EMAIL
+})
+
+export const loggedInByGoogle = () => ({
+    type: ACTION_LOGIN_BY_GOOGLE
 })
 
 export const logoutAction = () => ({
@@ -24,7 +29,7 @@ export const startLoginByEmail = (email, password, nextAction, onErrorByEmailLog
 		})
 }
 
-export const startLoginByGoogle = (nextAction) => {
+export const startLoginByGoogle = (nextAction, onErrorByGoogleLogin) => {
 	console.log("Login by Google...")
 		return firebase.auth().signInWithPopup(googleAuthProvider)
 			.then(() => {
@@ -32,7 +37,8 @@ export const startLoginByGoogle = (nextAction) => {
 				nextAction()
 			})
 			.catch((error) => {
-
+                console.log("oops, Couldn't login. Message: " + error.message)
+                onErrorByGoogleLogin(error.message)
 			})
 }
 

@@ -1,14 +1,16 @@
 import { Reducer } from 'redux'
-import { ACTION_LOGIN_BY_EMAIL, ACTION_LOGOUT } from "../actions/auth"
+import { ACTION_LOGIN_BY_EMAIL, ACTION_LOGIN_BY_GOOGLE, ACTION_LOGOUT } from "../actions/auth"
 
 export interface AuthState {
 	loggedIn: boolean,
-	isLoggedInByEmail: boolean
+	isLoggedInByEmail: boolean,
+	isLoggedInByGoogle: boolean
 }
 
 export const INITIAL_STATE: AuthState = {
 	loggedIn: false,
-	isLoggedInByEmail: false
+	isLoggedInByEmail: false,
+    isLoggedInByGoogle: false,
 };
 
 const authReducer: Reducer<AuthState> = (
@@ -20,8 +22,15 @@ const authReducer: Reducer<AuthState> = (
 			return {
 				...state,
 				loggedIn: true,
-				isLoggedInByEmail: true
+				isLoggedInByEmail: true,
 			}
+
+        case ACTION_LOGIN_BY_GOOGLE:
+            return {
+                ...state,
+                loggedIn: true,
+                isLoggedInByGoogle: true,
+            }
 
 		case ACTION_LOGOUT:
 			return {
