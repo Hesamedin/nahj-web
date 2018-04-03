@@ -1,29 +1,51 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Logo from '../assets/logo-bis.png'
 import { loginByEmailAction, startLoginByEmail } from '../actions/auth'
 import { push } from 'react-router-redux'
 import { SCREEN_ROOT } from '../App'
+import './../styles/app.css'
+import './../styles/social_buttons.css'
 
 class LoginForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			isEmailValidationErrorVisible: false,
+			emailValidationErrorMessage: ''
 		}
 	}
 
-	onSubmitClick = (e) => {
-		e.preventDefault();
+	clearError = () => {
+		this.setState({
+			isEmailValidationErrorVisible: false,
+			emailValidationErrorMessage: ''
+		})
+	}
 
-		const { email, password } = this.state;
+	onSubmitClick = (e) => {
+		e.preventDefault()
+		this.clearError()
+
+		const { email, password } = this.state
 		const nextAction = () => {
 			this.props.loginByEmailAction()
 			this.props.navToHomeScreen()
 		}
-		startLoginByEmail(email, password, nextAction)
+		const onErrorByEmailLogin = (errorMessage) => {
+			console.log("hoy, " + errorMessage)
+			this.setState({
+				isEmailValidationErrorVisible: true,
+				emailValidationErrorMessage: errorMessage
+			})
+		}
+		startLoginByEmail(email, password, nextAction, onErrorByEmailLogin)
+	}
+
+	onGoogleAuthClick = () => {
+
 	}
 
 	handleUserInput = (e) => {
@@ -32,60 +54,99 @@ class LoginForm extends Component {
 		this.setState({ [name]: value });
 	}
 
+	displayEmailValidationError = () => {
+		if (this.state.isEmailValidationErrorVisible) {
+			return (
+				<div className="box">
+					<h6 className="title is-6 has-text-danger">{this.state.emailValidationErrorMessage}</h6>
+				</div>
+			)
+		} else {
+			return (
+				<div/>
+			)
+		}
+	}
+
 	render() {
 		return (
-			<form className="box" onSubmit={this.onSubmitClick}>
-				<div className="field has-text-centered">
-					<img src={Logo} width="167" alt="pic"/>
-				</div>
+			<div className="columns">
+				<div className="column is-two-thirds">
+					<form className="box" onSubmit={this.onSubmitClick}>
+						<div className="field has-text-centered">
+							<h2 className="title is-2 has-text-grey-dark">Login By Email</h2>
+						</div>
 
-				<div className="field">
-					<label className="label">Email</label>
-					<div className="control has-icons-left">
-						<input
-							name="email"
-							className="input"
-							type="email"
-							placeholder="e.g. me@example.com"
-							value={this.state.email}
-							onChange={(event) => this.handleUserInput(event)}
-							required/>
-						<span className="icon is-small is-left">
+						<div className="field">
+							<label className="label">Email</label>
+							<div className="control has-icons-left">
+								<input
+									name="email"
+									className="input"
+									type="email"
+									placeholder="e.g. me@gmail.com"
+									value={this.state.email}
+									onChange={(event) => this.handleUserInput(event)}
+									required/>
+								<span className="icon is-small is-left">
 							<i className="fas fa-envelope"/>
 						</span>
-					</div>
-				</div>
+							</div>
+						</div>
 
-				<div className="field">
-					<label className="label">Password</label>
-					<div className="control has-icons-left">
-						<input
-							name="password"
-							className="input"
-							type="password"
-							placeholder="*********"
-							value={this.state.password}
-							onChange={(event) => this.handleUserInput(event)}
-							required/>
-						<span className="icon is-small is-left">
+						<div className="field">
+							<label className="label">Password</label>
+							<div className="control has-icons-left">
+								<input
+									name="password"
+									className="input"
+									type="password"
+									placeholder="*********"
+									value={this.state.password}
+									onChange={(event) => this.handleUserInput(event)}
+									required/>
+								<span className="icon is-small is-left">
 							<i className="fas fa-lock"/>
 						</span>
+							</div>
+						</div>
+
+						<div className="field">
+							<label className="checkbox">
+								<input type="checkbox"/>
+								Remember me
+							</label>
+						</div>
+
+						<div className="field">
+							<button className="button is-success">
+								Login
+							</button>
+						</div>
+
+						{this.displayEmailValidationError()}
+					</form>
+				</div>
+
+				<div className="column auto">
+					<div className="box has-text-centered">
+						<div className="field">
+							<h2 className="title is-2 has-text-grey-dark">Login By:</h2>
+						</div>
+
+						<button className="loginBtn loginBtn--google"
+						        onClick={this.onGoogleAuthClick}>
+							Login with Google
+						</button>
+
+						<div className="empty_10px"/>
+
+						<button className="loginBtn loginBtn--facebook">
+							Login with Facebook
+						</button>
 					</div>
 				</div>
-
-				<div className="field">
-					<label className="checkbox">
-						<input type="checkbox"/>
-						Remember me
-					</label>
-				</div>
-
-				<div className="field">
-					<button className="button is-success">
-						Login
-					</button>
-				</div>
-			</form>
+			</div>
 		)
 	}
 }
@@ -93,6 +154,7 @@ class LoginForm extends Component {
 const mapDispatchToProps = dispatch => bindActionCreators(
 	{
 		loginByEmailAction: () => loginByEmailAction(),
+
 		navToHomeScreen: () => push(SCREEN_ROOT)
 	},
 	dispatch

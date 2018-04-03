@@ -8,10 +8,7 @@ class LoginStyle extends Component {
 				<div className="hero-body">
 					<div className="container">
 						<div className="columns is-centered">
-							<div className="column is-5-tablet is-4-desktop is-3-widescreen">
-								{/* Our form code goes here */}
-								<LoginForm/>
-							</div>
+							<LoginForm/>
 						</div>
 					</div>
 				</div>
