@@ -10,7 +10,7 @@ import {
 	SCREEN_VERDICTS,
 	SCREEN_WISDOM
 } from '../App'
-import './../styles/mystyles.scss'
+import './../styles/mystyles.css'
 
 const MENU_LETTERS = 'menu_letters'
 const MENU_SPEECHES = 'menu_speeches'

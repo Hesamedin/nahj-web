@@ -1,3 +1,26 @@
 .empty_10px {
-    height: 10px
+  height: 10px
 }
+
+.padding-top-bottom-10 {
+  border-bottom: 10px;
+  padding-top: 10px;
+}
+
+// Bulma doc: https://bulma.io/documentation/overview/customize/
+// 1. Import the initial variables
+@import "../../node_modules/bulma/sass/utilities/initial-variables";
+@import "../../node_modules/bulma/sass/utilities/functions";
+
+// 2. Set your own initial variables
+$pink: #ffb3b3;
+
+// 3. Set the derived variables
+$primary: $pink;
+
+// 4. Setup your Custom Colors
+
+// 5. Add new color variables to the color map.
+
+// 6. Import the rest of Bulma
+@import "../../node_modules/bulma/bulma";

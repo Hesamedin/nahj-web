@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { loggedInByGoogle, loginByEmailAction, startLoginByEmail, startLoginByGoogle } from '../actions/auth'
 import { push } from 'react-router-redux'
 import { SCREEN_ROOT } from '../App'
-import './../styles/mystyles.scss'
+import './../styles/mystyles.css'
 import './../styles/social_buttons.css'
 
 class LoginForm extends Component {

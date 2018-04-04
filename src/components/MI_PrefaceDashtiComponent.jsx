@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './../styles/mystyles.scss'
+import './../styles/mystyles.css'
 
 class MI_PrefaceDashtiComponent extends Component {
 

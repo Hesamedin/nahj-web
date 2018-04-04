@@ -8,9 +8,10 @@ import { ConnectedRouter } from 'react-router-redux'
 import configStore, { history } from './store/configStore'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-import './../node_modules/bulma/css/bulma.css'
 import { firebase } from './firebase'
 import { loginAction, logoutAction } from './actions/auth'
+import './../node_modules/bulma/css/bulma.css'
+import './styles/mystyles.css'
 
 const target = document.getElementById('root')
 

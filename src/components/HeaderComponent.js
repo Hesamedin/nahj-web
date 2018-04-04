@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import logo from '../assets/logo.svg'
 import { SCREEN_LOGIN } from '../App'
 import { logoutAction, startLogout } from './../actions/auth'
-import '../styles/header/headerStyle.css'
+import '../styles/headerStyle.css'
 
 class HeaderComponent extends Component {
 
