@@ -21,7 +21,7 @@ export const SCREEN_PREFACE_SEYED_RAZI = '/preface_seyed_razi'
 
 const AppRouter = () => (
 	<div>
-		<HeaderComponent />
+		<HeaderComponent/>
 		<MenuComponent/>
 
 		<Switch>

@@ -66,6 +66,11 @@ class MenuComponent extends Component {
 	}
 
 	render() {
+		const { isMenuEnabled } = this.props
+		if (!isMenuEnabled) {
+			return (null)
+		}
+
 		return (
 			<div className="container padding-top-bottom-10">
 				<div className="tabs is-centered is-toggle is-medium">
@@ -125,6 +130,10 @@ class MenuComponent extends Component {
 	}
 }
 
+const mapStateToProps = (state) => ({
+	isMenuEnabled: state.menu.isEnabled
+})
+
 const mapDispatchToProps = dispatch => bindActionCreators(
 	{
 		navToLettersScreen: () => push(SCREEN_LETTERS),
@@ -137,4 +146,4 @@ const mapDispatchToProps = dispatch => bindActionCreators(
 	dispatch
 )
 
-export default connect(null, mapDispatchToProps)(MenuComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuComponent)
