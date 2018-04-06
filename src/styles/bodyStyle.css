@@ -1,0 +1,13 @@
+.body-container {
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 12px;
+}
+
+.body-sidebar {
+    width: 300px;
+}
+
+.sidebar-title {
+    text-align: center;
+}
