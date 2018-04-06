@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import HeaderComponent from './components/HeaderComponent'
+import FooterComponent from './components/FooterComponent'
 import MenuComponent from './components/MenuComponent'
 import LoginComponent from './components/LoginComponent'
 import MI_LettersComponent from './components/MI_LettersComponent'
@@ -34,6 +35,8 @@ const AppRouter = () => (
 			<Route path={SCREEN_PREFACE_DASHTI} component={MI_PrefaceDashtiComponent}/>
 			<Route path={SCREEN_PREFACE_SEYED_RAZI} component={MI_PrefaceSeyedRaziComponent}/>
 		</Switch>
+
+		<FooterComponent />
 	</div>
 )
 
