@@ -16,17 +16,25 @@ class HeaderComponent extends Component {
 	render(): JSX.Element {
 		const isLoggedIn = this.props.loginStatus
 		return (
-			<header className="header-container">
-				<div className="logo-branding">
-					<img src={logo} className="logo" alt="logo"/>
-					<h1 className="title is-2 has-text-white">Welcome to Nahj al-Balagha</h1>
+			<header className="level header-container">
+				<div className="level-left">
+					<div className="level-item">
+						<div className="logo-branding">
+							<img src={logo} className="logo" alt="logo"/>
+							<h1 className="title is-2 has-text-white">Welcome to Nahj al-Balagha</h1>
+						</div>
+					</div>
 				</div>
 
-				<a className="button"
-				   onClick={() => isLoggedIn ? startLogout(this.nextAction) : this.props.navToLoginScreen()}
-				>
-					{isLoggedIn ? "Logout" : "Login"}
-				</a>
+				<div className="level-right">
+					<div className="level-item">
+						<a className="button"
+						   onClick={() => isLoggedIn ? startLogout(this.nextAction) : this.props.navToLoginScreen()}
+						>
+							{isLoggedIn ? 'Logout' : 'Login'}
+						</a>
+					</div>
+				</div>
 			</header>
 		)
 	}

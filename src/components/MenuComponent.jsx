@@ -72,7 +72,7 @@ class MenuComponent extends Component {
 		}
 
 		return (
-			<div className="container padding-top-bottom-10">
+			<div className="container">
 				<div className="tabs is-centered is-toggle is-medium">
 					<ul>
 						<li className={this.getClassName(this.state.isLettersActive)}>
