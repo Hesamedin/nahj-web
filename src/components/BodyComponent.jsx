@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import './../styles/bodyStyle.css'
-
-const testList = [
-	{ title: 'Title One', id: 1 },
-	{ title: 'Title Two', id: 2 },
-	{ title: 'Title Three', id: 3 }
-]
 
 class BodyComponent extends Component {
 
@@ -22,8 +17,8 @@ class BodyComponent extends Component {
 
 				{/* <!-- Right side --> */}
 				<div className="level-right">
-					<div className="level-item">
-						{SideBarPanel(testList)}
+					<div className="level-item sidebar-item">
+						{SideBarPanel(this.props.name, this.props.letters)}
 					</div>
 				</div>
 			</nav>
@@ -31,9 +26,9 @@ class BodyComponent extends Component {
 	}
 }
 
-const SideBarPanel = itemList => (
+const SideBarPanel = (title, itemList) => (
 	<nav className="panel body-sidebar">
-		<p className="panel-heading sidebar-title">List of letters</p>
+		<p className="panel-heading sidebar-title">{title}</p>
 
 		{itemList.map((it, i) => <PanelItem key={i} id={it.id} title={it.title}/>)}
 	</nav>
@@ -41,4 +36,8 @@ const SideBarPanel = itemList => (
 
 const PanelItem = props => <a className="panel-block">{props.id}. {props.title}</a>
 
-export default BodyComponent
+const mapStateToProps = state => ({
+	letters: state.firebase.letters
+})
+
+export default connect(mapStateToProps)(BodyComponent)
