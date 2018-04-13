@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CreateAction, { SetLetters } from '../../actions/firebase';
 import { logger } from '../../utility/logger';
-import article from '../../models/article';
 import { getListOfLetters } from '../../firebase/utility';
+import Article from '../../models/Article';
 
 enum SectionItem {
     FIRST_10_ITEMS,
@@ -35,7 +35,7 @@ interface SidebarSectionStates {
 }
 
 interface SidebarSectionProps {
-    setLetters: (articles: article[]) => SetLetters;
+    setLetters: (articles: Article[]) => SetLetters;
 }
 
 class SidebarSection extends React.Component<SidebarSectionProps, SidebarSectionStates> {
@@ -175,7 +175,7 @@ class SidebarSection extends React.Component<SidebarSectionProps, SidebarSection
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
-        setLetters: (letters: article[]) => dispatch(CreateAction.setLettersAction(letters))
+        setLetters: (letters: Article[]) => dispatch(CreateAction.setLettersAction(letters))
     },
     dispatch);
 
