@@ -1,31 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loggedInByGoogle, loginByEmailAction, startLoginByEmail, startLoginByGoogle } from '../actions/auth'
+import CreateAction from '../actions/auth'
 import { push } from 'react-router-redux'
 import { SCREEN_ROOT } from '../App'
 import './../styles/mystyles.css'
 import './../styles/social_buttons.css'
 
 class LoginForm extends Component {
-	constructor(props) {
-		super(props)
+	constructor() {
+		super()
 		this.state = {
 			email: '',
-			password: '',
-			isEmailValidationErrorVisible: false,
-			emailValidationErrorMessage: '',
-			isGoogleValidationErrorVisible: false,
-			googleValidationErrorMessage: ''
+            emailValidationErrorMessage: '',
+            googleValidationErrorMessage: '',
+            isEmailValidationErrorVisible: false,
+            isGoogleValidationErrorVisible: false,
+            password: ''
 		}
 	}
 
 	clearError = () => {
 		this.setState({
-			isEmailValidationErrorVisible: false,
 			emailValidationErrorMessage: '',
-			isGoogleValidationErrorVisible: false,
-			googleValidationErrorMessage: ''
+			googleValidationErrorMessage: '',
+			isEmailValidationErrorVisible: false,
+			isGoogleValidationErrorVisible: false
 		})
 	}
 
@@ -40,8 +40,8 @@ class LoginForm extends Component {
 		}
 		const onErrorByEmailLogin = (errorMessage) => {
 			this.setState({
-				isEmailValidationErrorVisible: true,
-				emailValidationErrorMessage: errorMessage
+				emailValidationErrorMessage: errorMessage,
+				isEmailValidationErrorVisible: true
 			})
 		}
 		startLoginByEmail(email, password, nextAction, onErrorByEmailLogin)
@@ -54,8 +54,8 @@ class LoginForm extends Component {
 		}
 		const onErrorByGoogleLogin = (errorMessage) => {
 			this.setState({
-				isGoogleValidationErrorVisible: true,
-				googleValidationErrorMessage: errorMessage
+				googleValidationErrorMessage: errorMessage,
+				isGoogleValidationErrorVisible: true
 			})
 		}
 		startLoginByGoogle(nextAction, onErrorByGoogleLogin)
@@ -185,8 +185,8 @@ class LoginForm extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators(
 	{
-		loginByEmailAction: () => loginByEmailAction(),
-		loggedInByGoogle: () => loggedInByGoogle(),
+		loggedInByGoogle: () => CreateAction.loggedInByGoogle(),
+		loginByEmailAction: () => CreateAction.loginByEmailAction(),
 		navToHomeScreen: () => push(SCREEN_ROOT)
 	},
 	dispatch

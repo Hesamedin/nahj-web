@@ -1,5 +1,6 @@
 {
   "extends": [
+    "tslint:recommended",
     "tslint-react",
     "tslint-config-prettier"
   ],
@@ -65,6 +66,7 @@
     "no-trailing-whitespace": false,
     "no-unused-expression": true,
     "no-use-before-declare": true,
+    "object-literal-sort-keys": false,
     "one-line": [
       true,
       "check-catch",
@@ -72,6 +74,7 @@
       "check-open-brace",
       "check-whitespace"
     ],
+    "ordered-imports": false,
     "quotemark": [
       true,
       "single",
@@ -79,7 +82,7 @@
     ],
     "radix": true,
     "semicolon": [
-      true,
+      false,
       "always"
     ],
     "switch-default": true,

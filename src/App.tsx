@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
-import MenuComponent from './components/MenuComponent';
+import HeaderComponent from './components/HeaderComponent';
 import LoginComponent from './components/LoginComponent';
-import MI_LettersComponent from './components/MI_LettersComponent';
-import MI_SpeechesComponent from './components/MI_SpeechesComponent';
-import MI_VerdictsComponent from './components/MI_VerdictsComponent';
-import MI_WisdomComponent from './components/MI_WisdomComponent';
-import MI_PrefaceDashtiComponent from './components/MI_PrefaceDashtiComponent';
-import MI_PrefaceSeyedRaziComponent from './components/MI_PrefaceSeyedRaziComponent';
+import LettersComponent from './components/menu/LettersComponent';
+import MenuComponent from './components/menu/MenuComponent';
+import PrefaceDashtiComponent from './components/menu/PrefaceDashtiComponent';
+import PrefaceSeyedRaziComponent from './components/menu/PrefaceSeyedRaziComponent';
+import SpeechesComponent from './components/menu/SpeechesComponent';
+import VerdictsComponent from './components/menu/VerdictsComponent';
+import WisdomComponent from './components/menu/WisdomComponent';
 
 export const SCREEN_ROOT = '/';
 export const SCREEN_LOGIN = '/login';
@@ -27,13 +27,13 @@ const AppRouter = () => (
 
         <Switch>
             <Route path={SCREEN_LOGIN} component={LoginComponent}/>
-            <Route path={SCREEN_ROOT} exact={true} component={MI_LettersComponent}/>
-            <Route path={SCREEN_LETTERS} component={MI_LettersComponent}/>
-            <Route path={SCREEN_SPEECHES} component={MI_SpeechesComponent}/>
-            <Route path={SCREEN_VERDICTS} component={MI_VerdictsComponent}/>
-            <Route path={SCREEN_WISDOM} component={MI_WisdomComponent}/>
-            <Route path={SCREEN_PREFACE_DASHTI} component={MI_PrefaceDashtiComponent}/>
-            <Route path={SCREEN_PREFACE_SEYED_RAZI} component={MI_PrefaceSeyedRaziComponent}/>
+            <Route path={SCREEN_ROOT} exact={true} component={LettersComponent}/>
+            <Route path={SCREEN_LETTERS} component={LettersComponent}/>
+            <Route path={SCREEN_SPEECHES} component={SpeechesComponent}/>
+            <Route path={SCREEN_VERDICTS} component={VerdictsComponent}/>
+            <Route path={SCREEN_WISDOM} component={WisdomComponent}/>
+            <Route path={SCREEN_PREFACE_DASHTI} component={PrefaceDashtiComponent}/>
+            <Route path={SCREEN_PREFACE_SEYED_RAZI} component={PrefaceSeyedRaziComponent}/>
         </Switch>
 
         <FooterComponent/>

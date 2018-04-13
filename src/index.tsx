@@ -6,9 +6,9 @@ import configStore, { history } from './store/configStore';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { firebase } from './firebase';
-import { loginAction, logoutAction } from './actions/auth';
-import { logger } from './utility/Logger';
-import './../node_modules/bulma/css/bulma.css';
+import CreateAction from './actions/auth';
+import { logger } from './utility/logger';
+import '../node_modules/bulma/css/bulma.css';
 import './styles/mystyles.css';
 
 const target = document.getElementById('root');
@@ -31,8 +31,8 @@ firebase.auth().onAuthStateChanged((user) => {
     logger(`Auth state changed to: ${!!user}`);
     if (user) {
         logger(`Google uid: ${user.uid}`);
-        store.dispatch(loginAction(user.uid));
+        store.dispatch(CreateAction.loginAction(user.uid));
     } else {
-        store.dispatch(logoutAction());
+        store.dispatch(CreateAction.logoutAction());
     }
 });
