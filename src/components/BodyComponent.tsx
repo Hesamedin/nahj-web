@@ -1,29 +1,33 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import '../styles/bodyStyle.css';
 import SidebarPanel from './sidebar/SidebarPanel';
 import { NahjReduxState } from '../reducers';
-import Article from '../models/article';
+import article from '../models/article'
+import '../styles/bodyStyle.css';
 
 interface BodyComponentProps {
     name: string;
-    articleId: number;
-    articles: Article[];
+    article: article;
 }
 
 class BodyComponent extends React.Component<BodyComponentProps> {
 
     public render() {
-        const articleId = this.props.articleId;
-        const article = this.props.articles.find(x => x.id === articleId);
+        const art = this.props.article;
 
         return (
             /* <!-- Main container --> */
             <nav className="level body-container">
                 {/* <!-- Left side --> */}
                 <div className="level-left">
-                    <div className="level-item">
-                        {article}
+                    <div className="level-item content-block">
+                        <section className="section">
+                            <div className="container">
+                                <h1 className="title">{art.title}</h1>
+                                <br />
+                                <h2 className="subtitle">{art.description}</h2>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
@@ -39,8 +43,7 @@ class BodyComponent extends React.Component<BodyComponentProps> {
 }
 
 const mapStateToProps = (state: NahjReduxState) => ({
-    articleId: state.content.articleId,
-    articles: state.firebase.letters
+    article: state.content.article,
 });
 
 export default connect(mapStateToProps)(BodyComponent);

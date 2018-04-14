@@ -14,5 +14,13 @@
 
 .sidebar-item {
     direction: rtl;
-    width: 100%;
+    width: 300px;
+}
+
+.content-block {
+    direction: rtl;
+    margin:0 auto;
+    width: 1200px;
+    word-wrap: break-word;
+    background-color: beige;
 }

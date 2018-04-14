@@ -8,12 +8,12 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CreateAction, { SetContent } from '../../actions/content';
+import article from '../../models/article'
 
 export interface PanelItemProps {
     key: number;
-    id: number;
-    title: string;
-    displayContentById: (id: number) => SetContent;
+    art: article,
+    displayContentById: (article: article) => SetContent;
 }
 
 class PanelItem extends React.Component<PanelItemProps> {
@@ -25,19 +25,19 @@ class PanelItem extends React.Component<PanelItemProps> {
                 className="panel-block"
                 onClick={this.onItemClick}
             >
-                {this.props.id}. {this.props.title}
+                {this.props.art.id}. {this.props.art.title}
             </a>
         );
     }
 
     private onItemClick = () => {
-        this.props.displayContentById(this.props.id);
+        this.props.displayContentById(this.props.art);
     }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators(
     {
-        displayContentById: (id: number) => CreateAction.setDetailContentById(id)
+        displayContentById: (art: article) => CreateAction.setDetailContentById(art)
     },
     dispatch
 );

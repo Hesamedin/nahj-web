@@ -5,4 +5,4 @@ export default interface Article {
     title: string,
     description: string,
     sound: string
-};
+}

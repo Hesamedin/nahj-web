@@ -6,14 +6,14 @@
  */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Article from '../../models/Article';
+import article from '../../models/article';
 import PanelItem from './PanelItem';
 import SidebarSection from './SidebarSection';
 import { NahjReduxState } from '../../reducers';
 
 export interface SidebarPanelProps {
     title: string;
-    letters: Article[];
+    articles: article[];
 }
 
 class SidebarPanel extends React.Component<SidebarPanelProps> {
@@ -24,7 +24,7 @@ class SidebarPanel extends React.Component<SidebarPanelProps> {
                 <p className="panel-heading sidebar-title">{this.props.title}</p>
 
                 {
-                    this.props.letters.map((it, i) => this.getPanelItem(i, it.id, it.title))
+                    this.props.articles.map((it, i) => this.getPanelItem(i, it))
                 }
 
                 <SidebarSection/>
@@ -32,11 +32,11 @@ class SidebarPanel extends React.Component<SidebarPanelProps> {
         );
     }
 
-    private getPanelItem = (key: number, id: number, title: string) => <PanelItem key={key} id={id} title={title}/>;
+    private getPanelItem = (key: number, art: article) => <PanelItem key={key} art={art}/>;
 }
 
 const mapStateToProps = (state: NahjReduxState) => ({
-    letters: state.firebase.letters
+    articles: state.firebase.articles
 });
 
 export default connect(mapStateToProps)(SidebarPanel);

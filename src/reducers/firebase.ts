@@ -3,11 +3,11 @@ import article from '../models/article';
 import { FirebaseActionTypes, SetLetters } from '../actions/firebase';
 
 export interface FirebaseState {
-    letters: article[];
+    articles: article[];
 }
 
 export const INITIAL_STATE: FirebaseState = {
-    letters: []
+    articles: []
 };
 
 const firebaseReducer: Reducer<FirebaseState> = (
@@ -18,7 +18,7 @@ const firebaseReducer: Reducer<FirebaseState> = (
         case FirebaseActionTypes.setLetters:
             return {
                 ...state,
-                letters: action.payload
+                articles: action.payload
             };
 
         default:

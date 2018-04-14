@@ -6,13 +6,21 @@
  */
 import { Reducer } from 'redux';
 import { ContentActionTypes, SetContent } from '../actions/content';
+import article from '../models/article'
 
 export interface ContentState {
-    articleId: number
+    article: article
 }
 
 const INITIAL_STATE: ContentState = {
-    articleId: 0
+    article: {
+        id: 0,
+        catCode: 0,
+        catName: '',
+        title: '',
+        description: '',
+        sound: ''
+    }
 };
 
 const contentReducer: Reducer<ContentState> = (
@@ -23,7 +31,7 @@ const contentReducer: Reducer<ContentState> = (
         case ContentActionTypes.setDetailContent:
             return {
                 ...state,
-                articleId: action.payload
+                article: action.payload
             };
 
         default:

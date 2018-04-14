@@ -7,6 +7,7 @@
 
 import { Action } from '../utility/nj_types';
 import { validateActionTypes } from '../utility/validateActionTypes';
+import article from '../models/article'
 
 export enum ContentActionTypes {
     setDetailContent = 'nahj_content_set_detail'
@@ -14,11 +15,11 @@ export enum ContentActionTypes {
 
 validateActionTypes('ContentActionTypes', 'nahj_content', ContentActionTypes);
 
-export type SetContent = Action<ContentActionTypes.setDetailContent, number>;
+export type SetContent = Action<ContentActionTypes.setDetailContent, article>;
 
 const CreateAction = {
-    setDetailContentById: (id: number): SetContent => ({
-        payload: id,
+    setDetailContentById: (art: article): SetContent => ({
+        payload: art,
         type: ContentActionTypes.setDetailContent
     })
 };

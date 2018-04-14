@@ -1,6 +1,6 @@
-import Article from '../models/article';
 import { Action } from '../utility/nj_types';
 import { validateActionTypes } from '../utility/validateActionTypes';
+import Article from '../models/article';
 
 export enum FirebaseActionTypes {
     setLetters = 'nahj_firebase_set_letters'
