@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import SidebarPanel from './sidebar/SidebarPanel';
 import { NahjReduxState } from '../reducers';
-import article from '../models/article'
+import article from '../models/article';
 import '../styles/bodyStyle.css';
 
 interface BodyComponentProps {
@@ -20,14 +20,22 @@ class BodyComponent extends React.Component<BodyComponentProps> {
             <nav className="level body-container">
                 {/* <!-- Left side --> */}
                 <div className="level-left">
-                    <div className="level-item content-block">
-                        <section className="section">
-                            <div className="container">
-                                <h1 className="title">{art.title}</h1>
-                                <br />
-                                <h2 className="subtitle">{art.description}</h2>
+                    <div className="level-item">
+                        <nav className="panel content-block">
+                            <p className="panel-heading">{art.title}</p>
+                            {/*<div className="panel-block">{art.description}</div>*/}
+                            {/*<div className="panel-block" dangerouslySetInnerHTML={{__html: art.description}}>*/}
+                            <div className="panel-block">
+                                <p className="panel-block">This is test paragraph. sdfsdfsdf sdfsdf sdfsdf
+                                    sdfsd sdfs sdf sdf sdf</p>
+                                <p className="panel-block">This is test paragraph. sdfsdfsdf sdfsdf sdfsdf
+                                    sdfsd sdfs sdf sdf sdf</p>
+                                <p className="panel-block">This is test paragraph. sdfsdfsdf sdfsdf sdfsdf
+                                    sdfsd sdfs sdf sdf sdf</p>
+                                <p className="panel-block">This is test paragraph. sdfsdfsdf sdfsdf sdfsdf
+                                    sdfsd sdfs sdf sdf sdf</p>
                             </div>
-                        </section>
+                        </nav>
                     </div>
                 </div>
 
